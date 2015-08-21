@@ -1,2 +1,3 @@
 # juxtapose
-My #RETHackNight project
+
+A #RETHacknight project by [Nick Persico](http://www.twitter.com/nickpersico)
