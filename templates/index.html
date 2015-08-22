@@ -12,8 +12,8 @@
 
 <h1>Juxtapose</h1>
 
-<p class="lead">Using a property's real-time availability, see what the current
-                listed price is versus the Smart Host recommended price for the
+<p class="lead">Using a <a href="http://www.kigo.net">Kigo</a> property's real-time availability, see what the current
+                listed price is versus the latest <a href="http://www.smarthost.me">Smart Host</a> recommended price for the
                 night.</p>
 
 <hr>
@@ -23,7 +23,7 @@
       <strong>{{ property_data[0]['Headline'] }}</strong><br>
         {{ property_data[0]['Address1'] }}<br>
         {{ property_data[0]['City'] }}, {{ property_data[0]['City'] }} {{ property_data[0]['PostalCode'] }}<br>
-        <a href="{{ listing_data['link'] }}">Airbnb Listing</a>
+        <a href="{{ listing_data['link'] }}">Matching Airbnb Listing</a>
     </address>
 
   <table class="table table-hover">
@@ -46,5 +46,7 @@
       {% endfor %}
 
   </table>
+
+    <footer style="padding-bottom: 50px;">Built in a few hours by <a href="http://www.twitter.com/NickPersico">@NickPersico</a> during Smart Host's <a href="blog.smarthost.me/rethacknight/">#RETHackNight</a>.</footer>
 </container>
 {% endblock %}
