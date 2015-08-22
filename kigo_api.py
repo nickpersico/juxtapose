@@ -38,7 +38,6 @@ def fetch_prices(property_id):
             kigo_api_key, property_id)
 
     data = requests.get(url, headers={'Content-Type': 'application/json'})
-
     raw_rates = data.json['result'][0]['ContextData']['Rates']
 
     # Parse and output a clean rates table
@@ -46,8 +45,14 @@ def fetch_prices(property_id):
 
     for rate in raw_rates:
 
-        start_date = arrow.get(str(rate['StartDate'][:10]), 'YYYY-MM-DD')
-        end_date = arrow.get(str(rate['EndDate'][:10]), 'YYYY-MM-DD')
+        start_date = arrow.get(str(
+            rate['StartDate'][:10]), format('YYYY-MM-DD')
+        )
+
+        end_date = arrow.get(str(
+            rate['EndDate'][:10]), format('YYYY-MM-DD')
+        )
+
         minimum_night_stay = int(rate['LengthOfStay'])
         price = int(rate['Value'])
         nightly_price = round(float(price) / float(minimum_night_stay))
@@ -64,3 +69,32 @@ def fetch_prices(property_id):
             )
 
     return prices
+
+
+# Get a single property's availability
+def fetch_availability(property_id):
+    url = 'https://connect.bookt.com/ws/?method=get&entity=property&' \
+        'apikey={}&ids={}&rates=1&loadconfig=1&avail=1'.format(
+            kigo_api_key, property_id)
+
+    data = requests.get(url, headers={'Content-Type': 'application/json'})
+    raw_availability = data.json['result'][0]['ContextData']['Availability']
+
+    availability = []
+
+    for available in raw_availability:
+
+        start_date = arrow.get(str(
+            available['CheckIn'][:10]), format('YYYY-MM-DD')
+        )
+
+        end_date = arrow.get(str(
+            available['CheckOut'][:10]), format('YYYY-MM-DD')
+        )
+
+        date_range = get_list_of_dates(start_date, end_date)
+
+        for date in date_range:
+            availability.append(date)
+
+    return availability
