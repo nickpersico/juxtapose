@@ -1,0 +1,50 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}Juxtapose{% endblock %}
+
+{% block navbar %}
+<div class="navbar navbar-fixed-top">
+  <!-- ... -->
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+
+<h1>Juxtapose</h1>
+
+<p class="lead">Using a property's real-time availability, see what the current
+                listed price is versus the Smart Host recommended price for the
+                night.</p>
+
+<hr>
+
+<h3>Property:</h3>
+    <address>
+      <strong>{{ property_data[0]['Headline'] }}</strong><br>
+        {{ property_data[0]['Address1'] }}<br>
+        {{ property_data[0]['City'] }}, {{ property_data[0]['City'] }} {{ property_data[0]['PostalCode'] }}<br>
+        <a href="{{ listing_data['link'] }}">Airbnb Listing</a>
+    </address>
+
+  <table class="table table-hover">
+        <tr>
+            <td>Date</td>
+            <td>Smart Host Price</td>
+            <td>Current Listed Price</td>
+            <td>Avg Available Price</td>
+            <td>% Difference</td>
+        </tr>
+
+        {% for jux in juxtapose %}
+            <tr>
+                <td>{{ jux['date'] }}</td>
+                <td>{{ jux['avg_available_price'] }}</td>
+                <td>{{ jux['smart_host_price'] }}</td>
+                <td>{{ jux['current_listed_price'] }}</td>
+                <td>{{ jux['difference']}}%</td>
+            </tr>
+      {% endfor %}
+
+  </table>
+</container>
+{% endblock %}
