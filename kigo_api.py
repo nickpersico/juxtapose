@@ -1,8 +1,10 @@
 # Kigo API functions
 import json
 import requests0 as requests
-from keys import kigo_api_key
+import os
 import arrow
+
+kigo_api_key = os.getenv('KIGO_API_KEY')
 
 # The 'keys.py file is being .gitignore'ed for security purposes
 # Create your own keys.py file and add the API key

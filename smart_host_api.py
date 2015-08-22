@@ -2,8 +2,10 @@
 import arrow
 import json
 import requests0 as requests
-from keys import sh_appraisal_url
-from keys import sh_listing_url
+import os
+
+sh_appraisal_url = os.getenv('SH_APPRAISAL_URL')
+sh_listing_url = os.getenv('SH_LISTING_URL')
 
 
 # Retrieve an appraisal for a given night
