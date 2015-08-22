@@ -80,6 +80,7 @@ def fetch_availability(property_id):
     data = requests.get(url, headers={'Content-Type': 'application/json'})
     raw_availability = data.json['result'][0]['ContextData']['Availability']
 
+    all_dates = []
     availability = []
 
     for available in raw_availability:
@@ -95,6 +96,11 @@ def fetch_availability(property_id):
         date_range = get_list_of_dates(start_date, end_date)
 
         for date in date_range:
+            all_dates.append(date)
+
+    # Remove duplicate dates
+    for date in all_dates:
+        if date not in availability:
             availability.append(date)
 
     return availability
