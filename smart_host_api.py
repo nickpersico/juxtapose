@@ -7,6 +7,7 @@ from keys import sh_appraisal_url
 
 # Retrieve an appraisal for a given night
 def fetch_nightly_appraisal(listing_id, date):
+
     url = sh_appraisal_url + 'listing_id={}&date={}'.format(
         listing_id, date
     )
