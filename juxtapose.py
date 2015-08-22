@@ -26,11 +26,14 @@ for available_date in availability:
 
     # Print the juxtaposition
     smart_host_price = appraisal['smart_host_price']
+    avg_available_price = appraisal['available_listings_avg_price']
 
     print "... {} ...".format(available_date)
+
     print "... The Smart Host recommended price is ${}".format(
         smart_host_price
         )
+    print ".. The average available price is ${}.".format(avg_available_price)
 
     print "... The current advertised price is ${}".format(
         current_listed_price
